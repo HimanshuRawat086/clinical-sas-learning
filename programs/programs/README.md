@@ -26,6 +26,32 @@ This repo contains SAS programs that demonstrate importing and exporting common 
 - `PROC IMPORT` with `DBMS=XLS/XLSX/CSV/TAB/DLM`
 - `SHEET=`, `RANGE=`, `GETNAMES=`, `DATAROW=`, `REPLACE`
 - `PROC EXPORT` to Excel and delimited formats
+
+- # Clinical SAS — Input Methods (List, Named, Column, Formatted)
+
+This project demonstrates **how to read raw data into SAS** using common input techniques:
+- **List input** (space-delimited)
+- **Named input** (name=value pairs, order not important)
+- **Column input** (fixed columns)
+- **Formatted input** (fixed columns + informats)
+- Pointer controls: `@`, `@@`, `@n`, `+n`
+- Modifiers: `&` (embedded blanks), `:` (informats w/ delimiters)
+
+The code is **self-contained** using `DATALINES`, so you can run it directly.
+
+## Files
+- `programs/02_input_methods_demo.sas` — all examples in one runnable script
+
+## How to run
+1. Open the `.sas` file in SAS (EG/Studio/On-Prem).
+2. Run the whole script.
+3. Check the `PROC PRINT` outputs in the Results window.
+
+## Notes
+- Examples avoid external data files to keep the project portable.
+- Comments call out common pitfalls (e.g., overlapping columns, missing headers).
+- Never commit real patient/PHI data to GitHub.
+
 - Using `SASHELP` demo tables for safe exports
 
 ## Next steps
