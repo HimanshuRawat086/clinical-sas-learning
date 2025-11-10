@@ -58,3 +58,16 @@ The code is **self-contained** using `DATALINES`, so you can run it directly.
 - Add QA checks (obs counts, column types).
 - Add a macro to import all sheets from a workbook.
 - Add a data dictionary export (via `PROC CONTENTS`).
+
+- ## 03 — Date, Time, Datetime, and Numeric Formats
+
+This project demonstrates how SAS reads and displays date, time, datetime, and numeric values using INFORMAT (input interpretation) and FORMAT (output display). It includes examples of:
+
+- Reading raw date strings using `ddmmyy10.` and `date9.`
+- Displaying dates in multiple formats such as `ddmmyy10.`, `mmddyy10.`, `yymmdd10.`, and `weekdate36.`
+- Reading and formatting month-year values using `monyy7.`
+- Reading time and datetime values using `time.`, `time8.`, `timeampm10.`, and `datetime18.`
+- Applying numeric display formats such as `6.3` and `best.`
+
+**Program:** `programs/03_date_time_formats_demo.sas`
+
