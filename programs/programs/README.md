@@ -71,3 +71,25 @@ This project demonstrates how SAS reads and displays date, time, datetime, and n
 
 **Program:** `programs/03_date_time_formats_demo.sas`
 
+# Clinical SAS — PROC FORMAT (Character & Numeric)
+
+This project demonstrates `PROC FORMAT` use-cases:
+- Character → Numeric (C→N)
+- Numeric → Character (N→C)
+- Numeric → Numeric (N→N)
+- Character → Character (C→C)
+- Permanent format libraries (`FMTSEARCH`)
+- Export/Import format catalogs with `CNTLOUT / CNTLIN`
+- Viewing formats with `FMTLIB`
+
+## File
+- `programs/03_proc_format_demo.sas` — end-to-end runnable examples with `DATALINES`.
+
+## How to run
+1. Open the `.sas` file in SAS (EG/Studio/On-Prem).
+2. Run the whole script.
+3. Review printed outputs and format listings.
+
+## Notes
+- Examples use WORK library by default; a `SASUSER` example is included.
+- Never commit real PHI/patient data.
