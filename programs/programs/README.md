@@ -93,3 +93,23 @@ This project demonstrates `PROC FORMAT` use-cases:
 ## Notes
 - Examples use WORK library by default; a `SASUSER` example is included.
 - Never commit real PHI/patient data.
+
+# Clinical SAS Examples
+
+This repository contains short, self-contained SAS example scripts for clinical programming learning.
+
+## Contents
+- `programs/01_import_export_demo_v1.sas` — Import & Export examples (xls, xlsx, csv, tab, dlm)
+- `programs/02_input_methods_demo_v1.sas` — Input methods: List, Named, Column, Formatted, pointers (@, @@), & modifiers
+- `programs/03_date_time_numeric_formats_v1.sas` — Date, Time, Datetime, and Numeric format/informat examples
+- `programs/04_proc_format_examples_v1.sas` — PROC FORMAT examples (C→N, N→C, N→N, C→C), fmtlib, cntlout/cntlin
+- `programs/05_global_options_examples_v1.sas` — SAS global options examples (title, footnote, options, log control, library settings)
+
+## How to use
+1. Open the `.sas` file in SAS (Enterprise Guide / Base SAS).
+2. Run the file. All scripts are self-contained (use DATALINES or SASHELP) and safe to run.
+3. Do **not** commit any real patient/PHI data to this repo.
+
+## Notes
+- Filenames include `_v1` to avoid overwrite conflicts. Rename as needed.
+- If you already have a file with the same name, create a new file with a different suffix (e.g., `_v2`).
