@@ -113,3 +113,23 @@ This repository contains short, self-contained SAS example scripts for clinical 
 ## Notes
 - Filenames include `_v1` to avoid overwrite conflicts. Rename as needed.
 - If you already have a file with the same name, create a new file with a different suffix (e.g., `_v2`).
+- 
+# SAS DATA STEP – SET Statement Examples
+
+This project contains SAS programs demonstrating different ways of using the SET statement in the DATA step. Topics include:
+
+- Basic SET statement  
+- KEEP and DROP  
+- WHERE filtering  
+- RENAME  
+- Combining datasets  
+- DUPLICATE SET  
+- FIRSTOBS / OBS options  
+- Dataset options (PW, READ=, REPLACE=)  
+- LABEL assignment  
+- PROC DATASETS modify  
+
+All code is located in `programs/01_data_step_examples.sas`.
+
+Run the file directly in SAS to see outputs.
+
