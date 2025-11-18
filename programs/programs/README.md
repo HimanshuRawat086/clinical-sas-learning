@@ -133,3 +133,30 @@ All code is located in `programs/01_data_step_examples.sas`.
 
 Run the file directly in SAS to see outputs.
 
+# Clinical SAS — PROC PRINT & PROC SORT Examples
+
+This repository contains practice programs for `PROC PRINT` and `PROC SORT` in SAS
+using sample datasets such as `sashelp.class`, `sashelp.heart`, and small demo
+datasets created with `DATALINES`.
+
+## Contents
+
+- `programs/03_proc_print_sort_demo.sas`  
+  - Basic `PROC PRINT`
+  - Selecting variables with `VAR`
+  - Dropping variables
+  - `WHERE` filtering
+  - `SUM` statement
+  - Using `LABEL`, `SPLIT`, `HEADING=VERTICAL`, and `DOUBLE`
+  - Basic `PROC SORT` (BY, OUT=, KEEP=)
+  - Sorting with `DESCENDING`
+  - `NODUPKEY`, `DUPLICATE` handling with `DUPOUT=`
+  - Sorting character data and using `BY` + `ID`
+
+## How to run
+
+1. Open `03_proc_print_sort_demo.sas` in SAS (EG/Studio/Base).
+2. Submit the whole program.
+3. Check the `PROC PRINT` and `PROC SORT` outputs in the Results window.
+
+> Note: All examples use demo data. Do not use real patient data in public repos.
