@@ -242,3 +242,36 @@ This program demonstrates:
   - `INTNX` for shifting dates (days/months) with alignment
 - Date and datetime components  
   - `DAY`, `MONTH`, `YEAR`, `WEEK`, `DATEPART`, `TIMEPART`
+
+# Clinical SAS — WHERE, IF, AND LOGICAL OPERATORS
+
+This project demonstrates how to filter and manipulate data in SAS using:
+
+- `WHERE` vs `IF`
+- Logical operators: `AND`, `OR`, `IN`
+- Pattern matching: `LIKE`
+- Missing value checks: `IS MISSING`, `= .`, `= ""`
+- Conditional output to multiple datasets
+- `LENGTH` for character variables
+- `PROC SORT` with `NODUPKEY`, and BY-group processing using `FIRST.` and `LAST.`
+
+All examples use built-in SAS sample datasets: `sashelp.heart` and `sashelp.class`.
+
+## File
+
+- `programs/01_where_if_demo.sas` — runnable demo covering:
+  - Basic `WHERE` filters
+  - Multiple conditions with `AND` / `OR` / `IN`
+  - Range checks on numeric variables
+  - Handling missing numeric and character values
+  - `LIKE` patterns for character variables
+  - `IF` vs `WHERE` in DATA steps
+  - `OUTPUT` to multiple datasets
+  - `LENGTH` for character variables and re-mapping `sex`
+  - `PROC SORT`, `NODUPKEY`, and BY-group logic (`FIRST.` / `LAST.`)
+
+## How to run
+
+1. Copy `01_where_if_demo.sas` into your SAS environment (EG / Studio / Display Manager).
+2. Submit the full program.
+3. Review the `PROC PRINT` outputs to see how each filter and condition changes the results.
