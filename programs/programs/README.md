@@ -160,3 +160,85 @@ datasets created with `DATALINES`.
 3. Check the `PROC PRINT` and `PROC SORT` outputs in the Results window.
 
 > Note: All examples use demo data. Do not use real patient data in public repos.
+
+# Clinical SAS — SET Statement & Dataset Options
+
+This project demonstrates how to use the `SET` statement and common dataset options in SAS.  
+All examples use `SASHELP.CLASS` and `SASHELP.HEART` so the code can run on any SAS installation.
+
+## Topics covered
+
+- Basic `SET` statement
+- `KEEP=` and `DROP=` dataset options
+- `WHERE=` dataset option on input
+- `RENAME=` dataset option
+- Concatenating multiple datasets with `SET`
+- Using `OBS=` and `FIRSTOBS=` on input datasets
+- Output dataset options:
+  - `REPLACE=NO`
+  - Password protection with `PW=` and `READ=`
+  - Modifying password with `PROC DATASETS`
+- Assigning dataset label in the `DATA` statement
+
+## File
+
+- `programs/03_set_and_dataset_options_demo.sas`  
+  Contains all examples in a single runnable script.
+
+## How to run
+
+1. Open the `.sas` file in SAS (EG / Studio / Base).
+2. Run the whole script.
+3. Check the `PROC PRINT` output windows to see how each option behaves.
+
+# Clinical SAS — Character Functions & COALESCE
+
+This project demonstrates commonly used **character functions** and **missing-value handling** in SAS, using simple examples.
+
+## Topics Covered
+
+- Case conversion: `UPCASE`, `LOWCASE`, `PROPCASE`
+- Space and character cleanup: `COMPBL`, `COMPRESS`
+- Search functions: `FIND`, `INDEX`, `INDEXW`
+- Substring extraction: `SUBSTR`
+- Word extraction: `SCAN`
+- String joining and concatenation: `CAT`, `CATS`, `CATT`, `CATX`, `||`, `STRIP`, `TRIM`
+- Length and word count: `LENGTH`, `LENGTHM`, `COUNTW`, `REVERSE`
+- First non-missing value selection: `COALESCE`
+
+All examples use either `DATALINES` or `SASHELP` sample datasets (`SASHELP.CLASS`, `SASHELP.HEART`, `SASHELP.AIR`).
+
+## File
+
+- `programs/06_character_functions_and_coalesce.sas`  
+  Contains all the code examples for character handling and `COALESCE`.
+
+## How to Run
+
+1. Download or clone the repository.
+2. Open `programs/06_character_functions_and_coalesce.sas` in SAS (EG / Studio / Base SAS).
+3. Run the whole script or run each section step-by-step.
+4. Check the `PROC PRINT` outputs to see how each function behaves.
+
+> Note: All data is demo data from `SASHELP` or inline `DATALINES`. No real patient data is used.
+
+## 03 – Numeric Functions, Conversions, and Date/Time Handling in SAS
+
+This program demonstrates:
+
+- Basic numeric input and functions  
+  - `INT`, `ROUND`, `CEIL`, `FLOOR`, `DIF`, `LAG`, `LOG`, `LOG10`, `MOD`
+- Row-wise statistics across variables  
+  - `SUM`, `MEAN`, `STD`, `MIN`, `MAX`
+- Character ↔ numeric conversion  
+  - `PUT` and `INPUT`
+- Working with date values  
+  - Reading dates with `DATE9.` and `MMDDYY10.` informats  
+  - Displaying dates with `DDMMYY10.`  
+- Character to date and string concatenation using `||` and `CAT`
+- Date arithmetic  
+  - Direct subtraction of dates  
+  - `INTCK` for exact interval counts (day, week, month, year)  
+  - `INTNX` for shifting dates (days/months) with alignment
+- Date and datetime components  
+  - `DAY`, `MONTH`, `YEAR`, `WEEK`, `DATEPART`, `TIMEPART`
