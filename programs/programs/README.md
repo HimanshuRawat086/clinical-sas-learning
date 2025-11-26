@@ -275,3 +275,17 @@ All examples use built-in SAS sample datasets: `sashelp.heart` and `sashelp.clas
 1. Copy `01_where_if_demo.sas` into your SAS environment (EG / Studio / Display Manager).
 2. Submit the full program.
 3. Review the `PROC PRINT` outputs to see how each filter and condition changes the results.
+
+# PROC MEANS & PROC FREQ Demo (SASHELP.HEART)
+
+This folder contains a small demo of descriptive statistics on the
+`SASHELP.HEART` dataset using `PROC MEANS` and `PROC FREQ`.
+
+## Files
+- `demo_heart_stats.sas` – SAS code for summaries of AgeAtStart, Status, and Sex.
+
+## How to run
+1. Open SAS.
+2. Ensure `SASHELP.HEART` is available.
+3. Run `demo_heart_stats.sas`.
+4. Check the Results window and created output datasets.
