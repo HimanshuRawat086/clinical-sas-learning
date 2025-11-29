@@ -289,3 +289,72 @@ This folder contains a small demo of descriptive statistics on the
 2. Ensure `SASHELP.HEART` is available.
 3. Run `demo_heart_stats.sas`.
 4. Check the Results window and created output datasets.
+
+# SAS – Looping Concepts (DO, WHILE, UNTIL, Nested DO)
+
+## 📌 Objective
+This project demonstrates different types of loops in SAS using clinical-style examples.  
+Covered topics:
+- `DO WHILE`
+- `DO` (simple, conditional, backward)
+- `Nested DO` loops
+- `DO UNTIL`
+- Use of `IF`, `DO`, `ELSE`
+
+---
+
+## 📂 Files Included
+| File | Description |
+|------|-------------|
+| `looping_concepts.sas` | Main SAS program with all loop examples |
+| `README.md` | Explanation + execution guide |
+
+---
+
+## ▶ How to Run
+1. Open SAS.
+2. Copy & run the `looping_concepts.sas` file.
+3. Check results in **Work Library** and **PROC PRINT outputs**.
+
+---
+
+## 🧠 Concepts Demonstrated
+
+### 🔹 DO WHILE
+- Condition is checked **before** entering loop.
+- Used to stop when condition becomes FALSE.
+
+### 🔹 Simple DO Loops
+- `1 to 10`, `by 2`, backward loops.
+- Use of `IF…DO` to apply logic.
+
+### 🔹 Nested DO Loops
+- Used for combinations (e.g., patient visits / repeated measures).
+
+### 🔹 DO UNTIL
+- Always runs **at least once**.
+- Condition checked **after** loop ends.
+
+---
+
+## 📌 Clinical Use Cases (Real Industry Logic)
+| Type of Loop | Real Use Case |
+|--------------|------------------------------|
+| DO WHILE | Generate patient records until visit date > cutoff |
+| Nested DO | Create patient × visit combinations |
+| DO UNTIL | Run until drug dose reaches target |
+| IF–DO Block | Assign treatment arm based on age |
+
+---
+
+## 🚀 Next Extensions
+Possible future improvements:
+- Generate random age using `RAND()`
+- Create `Patient_ID`, `Visit`, `Dose`
+- Export results to CSV
+- Use macros to repeat logic
+
+---
+
+**Author**: *Himanshu Rawat*  
+_Clinical Programming (SAS + R)_  
