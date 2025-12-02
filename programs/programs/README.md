@@ -358,3 +358,31 @@ Possible future improvements:
 
 **Author**: *Himanshu Rawat*  
 _Clinical Programming (SAS + R)_  
+
+
+# Arrays & Missing-Value Handling (SAS)
+
+## Objective
+Demonstrate common array techniques and patterns for handling missing values and bulk transformations in SAS:
+- Replace missing values (single variables and via arrays)
+- Use array ranges and different replacement rules
+- Apply arithmetic and functions to array elements
+- Work with all character / numeric variables using `_character_` and `_numeric_`
+- Compute and use row-wise mean to impute missing values
+
+## Files
+- `arrays_missing_handling.sas` — Complete SAS script with all examples
+
+## How to run
+1. Open SAS.
+2. Run `arrays_missing_handling.sas`.
+3. Inspect resulting datasets (`WORK.`) using `PROC PRINT` or Viewtable.
+
+## Notes / Caveats
+- Example steps intentionally re-use dataset names like `test1` for demonstration; when producing final analysis, use descriptive dataset names to avoid accidental overwrites.
+- Step that uses an array of character variables (`array abc (6) ll nn ...`) is illustrative — ensure the target dataset has corresponding character variables before running.
+- For clinical workflows, prefer creating final cleaned datasets with meaningful names and keep raw source data unchanged.
+
+## Author
+Himanshu Rawat — Clinical Programming (SAS + R)
+
