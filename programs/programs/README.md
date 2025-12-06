@@ -386,3 +386,30 @@ Demonstrate common array techniques and patterns for handling missing values and
 ## Author
 Himanshu Rawat — Clinical Programming (SAS + R)
 
+# Merging in SAS (One-to-One, One-to-Many, Many-to-Many)
+
+## Objective
+This project demonstrates how to combine datasets in SAS using the `MERGE` statement:
+
+- One-to-one merges
+- Using `IN=` flags for inner / left / right / anti joins
+- One-to-many merges (parent–child)
+- Many-to-many merges (AE–CM example) and why they are tricky
+
+## Files
+- `demo_merging.sas` – Main SAS program with all examples
+
+## How to run
+1. Open SAS.
+2. Run `demo_merging.sas`.
+3. View created datasets in the WORK library and the printed outputs.
+
+## Key ideas
+- Datasets must be **sorted by BY variables** before using `MERGE`.
+- Use `IN=` flags to control which records to keep:
+  - `if a and b;` → inner join
+  - `if a;` → left join
+  - `if b;` → right join
+  - `if a and not b;` → left-only
+  - `if b and not a;` → right-only
+- For **many-to-many** joins, `MERGE` may not give all combinations; `PROC SQL` is often better.
