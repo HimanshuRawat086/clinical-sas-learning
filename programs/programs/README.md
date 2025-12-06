@@ -413,3 +413,49 @@ This project demonstrates how to combine datasets in SAS using the `MERGE` state
   - `if a and not b;` → left-only
   - `if b and not a;` → right-only
 - For **many-to-many** joins, `MERGE` may not give all combinations; `PROC SQL` is often better.
+
+# PROC REPORT Demo – Reporting on CLASS & TRIALS Data
+
+## Objective
+This project demonstrates how to use `PROC REPORT` in SAS for tabular reporting, including:
+
+- Basic `PROC REPORT` usage (`NOWD`, `HEADLINE`, `HEADSKIP`)
+- Selecting and labeling columns
+- Ordering and grouping with `DEFINE`
+- BREAK and COMPUTE blocks (custom lines, summaries)
+- BY-group reporting
+- Text wrapping with `FLOW`
+- Simple `ACROSS` reports and summaries
+
+## Datasets Used
+
+- `sashelp.class` – Built-in SAS demo dataset (students' age, sex, height, weight).
+- `test` – Derived from `sashelp.class` with an extra text variable.
+- `trials` – Custom dataset with patient trial readings (sb1/sb2).
+
+## File
+
+- `proc_report_demo.sas` – Full script containing all `PROC REPORT` examples.
+
+## How to Run
+
+1. Open SAS.
+2. Run `proc_report_demo.sas`.
+3. View:
+   - Output window for reports.
+   - WORK library for created datasets (`ll`, `test`, `trials`, etc.).
+
+## Key Concepts Shown
+
+- `NOWD` for non-interactive reports.
+- `HEADLINE` & `HEADSKIP` for header formatting.
+- Group/Order variables with `DEFINE ... / GROUP` and `DEFINE ... / ORDER`.
+- Custom labels, widths, and header splitting with `SPLIT=`.
+- `BREAK AFTER` and `COMPUTE AFTER` for group-wise lines/summaries.
+- `FLOW` for wrapping long text in a column.
+- `ACROSS` for transposing values across columns.
+- Using `DUL`, `DOL`, and `SUMMARIZE` for group summaries.
+
+## Author
+
+Himanshu Rawat — Clinical Programming (SAS + R)
