@@ -459,3 +459,28 @@ This project demonstrates how to use `PROC REPORT` in SAS for tabular reporting,
 ## Author
 
 Himanshu Rawat — Clinical Programming (SAS + R)
+
+# PROC TRANSPOSE Demo – Narrow ↔ Wide Data
+
+## Objective
+
+This project demonstrates how to reshape data using `PROC TRANSPOSE` in SAS:
+
+- Converting **narrow → wide** (one row per pet / owner to one row per owner)
+- Converting **wide → narrow** (multiple pet columns to multiple rows)
+- Using options and statements:
+  - `PREFIX=`
+  - `NAME=`
+  - `VAR`
+  - `ID`
+  - `BY`
+
+## Datasets
+
+- `narrow_file1` – simple narrow file with one row per owner–pet.
+- `narrow_file2` – narrow file with **multiple rows per owner**.
+- `wide_file3` – wide file with one row per owner (cat, dog, fish, bird).
+
+## File
+
+- `proc_transpose_dem
