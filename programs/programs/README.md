@@ -484,3 +484,87 @@ This project demonstrates how to reshape data using `PROC TRANSPOSE` in SAS:
 ## File
 
 - `proc_transpose_dem
+
+
+# PROC SQL in SAS – Complete Demo
+
+## Objective
+This project demonstrates how to use **PROC SQL in SAS** for data creation,
+querying, joining, aggregation, and advanced transformations.
+
+The script covers SQL concepts commonly used in:
+- Clinical programming
+- Data analysis
+- Reporting and ETL workflows
+
+---
+
+## Topics Covered
+
+### 1. Dataset Creation
+- Creating datasets using DATA step
+- Using dates, formats, and character variables
+
+### 2. Basic SQL Queries
+- SELECT *
+- WHERE, ORDER BY
+- DISTINCT
+- LIKE, BETWEEN, IN
+- IS NULL / IS NOT NULL
+
+### 3. Joining Tables
+- INNER JOIN
+- LEFT JOIN
+- RIGHT JOIN
+- FULL JOIN
+- UNION, INTERSECT, EXCEPT
+
+### 4. Subqueries
+- Subqueries in SELECT
+- Subqueries in WHERE
+
+### 5. Aggregate Functions & Grouping
+- SUM, AVG, COUNT, MIN, MAX
+- GROUP BY
+- HAVING
+- Summary reports
+
+### 6. Updating & Deleting Records
+- UPDATE statements
+- DELETE statements
+
+### 7. Views & Indexes
+- CREATE VIEW
+- CREATE INDEX
+
+### 8. Advanced SQL Functions
+- CASE WHEN
+- Date functions (INTCK, INTNX)
+- String functions (CATS, LENGTH)
+- Pivoting and unpivoting data
+
+---
+
+## Files
+- `proc_sql_demo.sas` – Full PROC SQL demo with examples
+
+---
+
+## How to Run
+1. Open SAS.
+2. Run `proc_sql_demo.sas`.
+3. Review results in the **Results window** and datasets in the **WORK library**.
+
+---
+
+## Clinical Relevance
+- Creating analysis datasets
+- Joining subject-level and visit-level data
+- Generating summary tables
+- Preparing reports for listings and outputs
+
+---
+
+## Author
+**Himanshu Rawat**  
+Clinical Programming (SAS & R)
