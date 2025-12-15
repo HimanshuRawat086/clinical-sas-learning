@@ -568,3 +568,79 @@ The script covers SQL concepts commonly used in:
 ## Author
 **Himanshu Rawat**  
 Clinical Programming (SAS & R)
+
+# SAS Macros – Complete Demo
+
+## Objective
+This project demonstrates the use of **SAS Macros** to automate tasks,
+create dynamic programs, and control execution flow.
+
+Macros are heavily used in:
+- Clinical programming
+- Reusable reporting code
+- Parameterized analysis programs
+
+---
+
+## Topics Covered
+
+### 1. Basic Macro Creation
+- Defining macros with `%macro` / `%mend`
+- Passing parameters (keyword & positional)
+
+### 2. Macro Variables
+- `%let` to create macro variables
+- Resolving macro variables in DATA & PROC steps
+- Appending text before and after macro variables
+
+### 3. Macro Loops
+- `%do %to` loops
+- Generating multiple datasets dynamically
+
+### 4. PROC SQL INTO
+- Creating macro variables using `SELECT INTO :`
+- Using macro variables in titles and WHERE clauses
+
+### 5. CALL SYMPUT / CALL SYMPUTX
+- Creating macro variables from DATA steps
+- Difference between `symput` and `symputx`
+
+### 6. Macro Scope
+- `%local` vs `%global`
+- Understanding variable scope
+
+### 7. Conditional Logic
+- `%if %then %else`
+- Using automatic macro variables like `&SYSDAY`
+
+### 8. Debugging & Quoting
+- `%put`, `_USER_`, `_AUTOMATIC_`
+- Macro quoting: `%str`, `%nrstr`, `%bquote`
+
+---
+
+## File
+- `macros_demo.sas` – Complete macro examples and demonstrations
+
+---
+
+## How to Run
+1. Open SAS.
+2. Run `macros_demo.sas`.
+3. Check:
+   - LOG window for macro execution (`MPRINT`, `MLOGIC`)
+   - WORK library for generated datasets
+
+---
+
+## Clinical Relevance
+- Automating repetitive summaries
+- Parameterized reporting
+- Dynamic titles and filters
+- Scalable clinical reporting programs
+
+---
+
+## Author
+**Himanshu Rawat**  
+Clinical Programming (SAS & R)
