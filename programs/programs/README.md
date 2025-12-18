@@ -644,3 +644,78 @@ Macros are heavily used in:
 ## Author
 **Himanshu Rawat**  
 Clinical Programming (SAS & R)
+
+# INFILE & Raw Data Handling in SAS
+
+## Objective
+This project demonstrates how to read, control, and clean raw data files
+using the `INFILE` statement in SAS.
+
+It focuses on handling:
+- Missing values
+- Irregular records
+- Different delimiters
+- Partial file reads
+- Complex clinical-style raw datasets
+
+---
+
+## Topics Covered
+
+### 1. Handling Missing Data
+- Reading missing numeric and character values
+- Effects of missing raw data on DATA step processing
+
+### 2. INFILE Options
+- `MISSOVER`
+- `FLOWOVER` (default behavior)
+- `STOPPEDOVER`
+- `TRUNCOVER`
+- `FIRSTOBS=` and `OBS=`
+
+### 3. Delimiters
+- `DLM=` for custom delimiters
+- Tab-delimited files (`'09'x`)
+- Multiple delimiters in one program
+
+### 4. DSD (Data-Sensitive Delimiter)
+- Handling CSV files
+- Treating consecutive delimiters as missing
+- Removing single and double quotes automatically
+
+### 5. Reading Portions of Raw Data
+- Column pointers
+- `@` line pointer control
+- Selective scanning of raw data
+
+### 6. Clinical-Style Raw Data
+- Large variable lists
+- Structured lab and vitals data
+- Comparison of `INFILE` vs `PROC IMPORT`
+
+---
+
+## File
+- `infile_options_demo.sas` – Complete demonstration of INFILE options
+
+---
+
+## How to Run
+1. Open SAS.
+2. Update file paths to match your local system if needed.
+3. Run `infile_options_demo.sas`.
+4. Inspect datasets created in the WORK library.
+
+---
+
+## Clinical Relevance
+- Reading vendor-supplied raw text files
+- Handling missing and malformed records
+- Importing lab, vitals, and listing data
+- Greater control than `PROC IMPORT`
+
+---
+
+## Author
+**Himanshu Rawat**  
+Clinical Programming (SAS & R)
