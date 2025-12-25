@@ -719,3 +719,75 @@ It focuses on handling:
 ## Author
 **Himanshu Rawat**  
 Clinical Programming (SAS & R)
+
+# RETAIN Statement in SAS – Cumulative & Group Processing
+
+## Objective
+This project demonstrates the use of the **RETAIN** statement in SAS to
+carry values across iterations of the DATA step.
+
+RETAIN is a **critical concept in clinical programming**, especially for:
+- Cumulative calculations
+- Serial numbers
+- By-group processing
+- LOCF (Last Observation Carried Forward)
+
+---
+
+## Topics Covered
+
+### 1. Basics of RETAIN
+- Prevents variables from resetting to missing
+- Retains values across DATA step iterations
+
+### 2. Serial Number Generation
+- Using `RETAIN`
+- Using implicit retain (`+1`)
+- Using automatic variable `_N_`
+
+### 3. Cumulative Calculations
+- Running totals
+- Group-wise cumulative sums
+
+### 4. BY-Group Processing
+- `FIRST.` and `LAST.` logic
+- Resetting retained variables correctly
+
+### 5. Multiple Grouping Variables
+- Handling more than one BY variable safely
+
+### 6. Clinical Example – LOCF
+- Carrying forward last non-missing lab value
+- Avoiding value carryover across subjects or tests
+
+---
+
+## File
+- `retain_statement_demo.sas` – Complete RETAIN examples
+
+---
+
+## How to Run
+1. Open SAS.
+2. Run `retain_statement_demo.sas`.
+3. Review:
+   - Output datasets in WORK library
+   - PROC PRINT results
+
+---
+
+## Clinical Relevance
+- Visit-wise cumulative metrics
+- Subject-level summaries
+- LOCF derivations (ADaM datasets)
+- Preventing data leakage across subjects/tests
+
+⚠️ **Important Warning**  
+Always reset retained variables correctly when using BY groups, or values
+may incorrectly carry across patients or parameters.
+
+---
+
+## Author
+**Himanshu Rawat**  
+Clinical Programming (SAS & R)
