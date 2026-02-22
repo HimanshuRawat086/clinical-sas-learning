@@ -1224,3 +1224,74 @@ This table is commonly used in:
 
 Himanshu Rawat  
 Clinical SAS Programming Portfolio
+
+# Vital Signs Summary Table (Observed & Change from Baseline)
+
+## 📌 Objective
+
+Generate a CSR-style Vital Signs summary table showing:
+
+- Observed values
+- Change from baseline
+- Treatment group comparison
+- Visit-wise statistics
+
+Statistics Included:
+
+- N
+- Mean
+- Median
+- Standard Deviation
+- Minimum
+- Maximum
+
+---
+
+## 📊 Dataset Used
+
+Dummy ADVS dataset containing:
+
+- USUBJID
+- PARAM (HEIGHT / WEIGHT)
+- TRTPN / TRTP
+- AVISITN / AVISIT
+- AVAL (Observed value)
+- CHG (Change from baseline)
+- SAFFL (Safety flag)
+
+---
+
+## 🧠 Programming Techniques Used
+
+- Safety population filtering
+- PROC SUMMARY (dual analysis)
+- Separate AVAL and CHG statistics
+- Dataset merge by class variables
+- Multi-level PROC REPORT columns
+- ODS RTF export
+- Page break by parameter
+
+---
+
+## 🚀 Output
+
+RTF file:
+`Vital_signs_table.rtf`
+
+---
+
+## 📈 Clinical Relevance
+
+Used in:
+
+- CSR Section 14.x
+- Vital Signs Tables
+- Efficacy / Safety summaries
+- Regulatory submission outputs
+
+---
+
+## 👨‍💻 Author
+
+Himanshu Rawat  
+Clinical SAS Programming Portfolio
