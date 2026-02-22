@@ -1091,3 +1091,65 @@ Used in:
 
 Himanshu Rawat  
 Clinical Programming (SAS & R)
+
+# Table 14.1.2 – Age Summary (Continuous Variable)
+
+## Objective
+
+Generate a clinical-style demographics table summarizing Age by treatment group.
+
+Statistics included:
+
+- N
+- Mean (SD)
+- Median
+- Minimum, Maximum
+
+Output formatted for CSR-style table using:
+- PROC SUMMARY
+- Data step formatting
+- PROC TRANSPOSE
+- PROC REPORT
+- ODS RTF
+
+---
+
+## Dataset
+
+ADSL-like dataset including:
+- USUBJID
+- TRT01A / TRT01AN
+- SAFFL
+- AGE
+
+---
+
+## Programming Flow
+
+1. Filter Safety Population
+2. Create Denominator
+3. Generate Descriptive Statistics (PROC SUMMARY)
+4. Format rows:
+   - N
+   - Mean (SD)
+   - Median
+   - Min, Max
+5. Stack rows
+6. Transpose treatments to columns
+7. Generate RTF output
+
+---
+
+## Clinical Relevance
+
+Used in:
+- Demographics Tables
+- Baseline Characteristics
+- Regulatory CSR Table 14.x
+
+---
+
+## Author
+
+Himanshu Rawat  
+Clinical Programming (SAS & R)
