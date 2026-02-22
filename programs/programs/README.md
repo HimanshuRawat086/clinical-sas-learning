@@ -791,3 +791,69 @@ may incorrectly carry across patients or parameters.
 ## Author
 **Himanshu Rawat**  
 Clinical Programming (SAS & R)
+
+# Clinical Listing using PROC REPORT + ODS RTF
+
+## Objective
+
+This project demonstrates how to create a clinical-style subject listing
+and export it to an RTF (Word) file using:
+
+- DATA step
+- PROC REPORT
+- Titles and page setup
+- ODS RTF output
+
+This mimics real-world regulatory clinical reporting.
+
+---
+
+## Dataset
+
+- ADSL (Subject-Level Analysis Dataset)
+- Flags included:
+  - SAFFL      → Safety Population
+  - DLTEVLFL   → DLT Evaluable Population
+  - PKEVLFL    → PK Evaluable Population
+  - ENRLFL     → Enrolled Population
+
+---
+
+## Topics Covered
+
+- Creating subject-level dataset
+- Using KEEP statement
+- PROC REPORT column formatting
+- SPLIT option for multi-line headers
+- Page orientation control
+- TITLE statements (left and center justification)
+- ODS RTF file generation
+- Clean-up of titles and options
+
+---
+
+## Output
+
+The program generates:
+
+`l_16211_practise.rtf`
+
+This is a Word-compatible listing file.
+
+---
+
+## Clinical Relevance
+
+This type of listing is commonly found in:
+
+- CSR (Clinical Study Report)
+- 16.2.x listings
+- Subject-level population summaries
+- Regulatory submission outputs
+
+---
+
+## Author
+
+Himanshu Rawat  
+Clinical Programming (SAS & R)
