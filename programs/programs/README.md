@@ -1029,3 +1029,65 @@ This structure is used in:
 
 Himanshu Rawat  
 Clinical Programming (SAS & R)
+
+# Table 14.1.1 – Age Summary by Treatment
+
+## Objective
+
+This project demonstrates how to create a clinical-style demographic
+summary table showing subject counts and descriptive statistics by
+treatment group.
+
+This mimics a standard CSR baseline table.
+
+---
+
+## Dataset Used
+
+ADSL-like dataset including:
+
+- USUBJID  – Subject ID
+- TRT01A   – Treatment Name
+- TRT01AN  – Treatment Number
+- SAFFL    – Safety Population Flag
+- AGE      – Subject Age
+
+---
+
+## Programming Steps
+
+1. Filter Safety Population
+2. Create Denominator per Treatment
+3. Generate Descriptive Statistics (N, Mean, SD, Min)
+4. Calculate N (%) rows
+5. Merge denominators
+6. Format N (%)
+7. Transpose Treatments to Columns
+8. Generate RTF Table
+
+---
+
+## Techniques Demonstrated
+
+- PROC SQL (denominator creation)
+- PROC SUMMARY (descriptive stats)
+- Percentage calculation
+- PROC TRANSPOSE
+- PROC REPORT
+- ODS RTF output
+
+---
+
+## Clinical Relevance
+
+Used in:
+- Demographic summary tables
+- Baseline characteristic tables
+- Regulatory CSR submissions
+
+---
+
+## Author
+
+Himanshu Rawat  
+Clinical Programming (SAS & R)
