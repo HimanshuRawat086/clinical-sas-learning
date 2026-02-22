@@ -944,3 +944,88 @@ Each containing properly paginated abnormal listings.
 
 Himanshu Rawat  
 Clinical Programming (SAS & R)
+
+# Table 14.1.1 – Subject Disposition (N and %)
+
+## Objective
+
+This project demonstrates how to generate a clinical summary table
+showing subject counts and percentages by treatment group.
+
+The table includes:
+
+- Subjects Planned for Treatment
+- Subjects Withdrawn
+
+Counts are displayed as:
+
+N (percentage)
+
+Example:
+5 (62.5%)
+
+---
+
+## Dataset Used
+
+ADSL-like subject-level dataset including:
+
+- USUBJID  – Subject ID
+- TRT01A   – Treatment Name
+- TRT01AN  – Treatment Number
+- SAFFL    – Safety Population Flag
+- EOSSTT   – End of Study Status
+- DISREAS  – Discontinuation Reason
+
+---
+
+## Programming Steps
+
+1. Filter Safety Population (SAFFL = "Y")
+2. Create Denominator (Total N per Treatment)
+3. Create Row 1 (Subjects Planned)
+4. Create Row 2 (Subjects Withdrawn)
+5. Merge Denominator
+6. Calculate Percentage
+7. Format as "N (XX.X%)"
+8. Transpose Treatments to Columns
+9. Generate Final Table using PROC REPORT
+10. Export to RTF
+
+---
+
+## Output
+
+Generates:
+
+Table_1411.rtf
+
+---
+
+## Clinical Relevance
+
+This structure is used in:
+
+- CSR Section 14.x Tables
+- Subject Disposition Summary
+- Regulatory Submission Tables
+- Safety Population Reporting
+
+---
+
+## Techniques Demonstrated
+
+- PROC SQL aggregation
+- Distinct subject counting
+- Merging denominators
+- Percentage calculation
+- PROC TRANSPOSE for column layout
+- PROC REPORT for final table
+- ODS RTF export
+
+---
+
+## Author
+
+Himanshu Rawat  
+Clinical Programming (SAS & R)
