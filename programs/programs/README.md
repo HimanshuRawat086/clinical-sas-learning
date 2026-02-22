@@ -1153,3 +1153,74 @@ Used in:
 
 Himanshu Rawat  
 Clinical Programming (SAS & R)
+
+# Adverse Event Summary Table (SOC → PT)
+
+## 📌 Objective
+
+To generate a CSR-style Adverse Event summary table displaying:
+
+- System Organ Class (SOC)
+- Preferred Term (PT)
+- Subject counts and percentages
+- Treatment-wise columns
+
+---
+
+## 📊 Table Structure
+
+System Organ Class  
+   → Preferred Term  
+
+Each cell displays:
+
+N (Percentage)
+
+---
+
+## 🧠 Programming Concepts Used
+
+- PROC SQL (denominator + counts)
+- Distinct subject counting
+- Hierarchical table structure (SOC → PT)
+- Percentage calculation
+- PROC TRANSPOSE
+- PROC REPORT
+- ODS RTF export
+
+---
+
+## 📂 Input Dataset
+
+Dummy ADAE dataset with:
+
+- USUBJID
+- TRT01AN / TRT01A
+- AESOC
+- AEDECOD
+- TRTEMFL
+
+---
+
+## 🚀 Output
+
+RTF file:
+`ae_summary.rtf`
+
+---
+
+## 📈 Clinical Relevance
+
+This table is commonly used in:
+
+- Clinical Study Reports (CSR)
+- Safety Summaries
+- Regulatory Submissions
+- Phase II / Phase III studies
+
+---
+
+## 👨‍💻 Author
+
+Himanshu Rawat  
+Clinical SAS Programming Portfolio
