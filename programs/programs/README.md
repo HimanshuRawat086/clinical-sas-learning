@@ -857,3 +857,90 @@ This type of listing is commonly found in:
 
 Himanshu Rawat  
 Clinical Programming (SAS & R)
+
+# Abnormal Laboratory Listing (Macro-Driven, CSR Style)
+
+## Objective
+
+This project demonstrates how to generate clinical-style abnormal laboratory listings
+using:
+
+- ADLB-like dataset
+- Filtering abnormal values
+- Derived display variables
+- Pagination logic
+- PROC REPORT
+- ODS RTF output
+- Parameterized macro execution
+
+This mimics real Clinical Study Report (CSR) listing programming.
+
+---
+
+## Dataset
+
+ADLB-style structure including:
+
+- USUBJID   – Subject ID
+- PARCAT1   – Parameter Category
+- PARAM     – Test Name
+- AVISIT    – Visit
+- ADT       – Analysis Date
+- ANRLO     – Lower Normal Range
+- ANRHI     – Upper Normal Range
+- AVAL      – Result
+- ANRIND    – Abnormality Flag (H/L/N)
+
+---
+
+## Features Implemented
+
+### 1. Abnormal Filtering
+- Excludes normal (ANRIND = "N")
+- Filters by parameter category (CHEMISTRY / HEMATOLOGY)
+
+### 2. Derived Display Variables
+- Combined Normal Range
+- Character Date variable
+- Character Result variable
+
+### 3. Manual Pagination Logic
+- Maximum 20 lines per page
+- RETAIN used for page counter
+- BREAK AFTER PAGE
+
+### 4. Macro-Driven Execution
+Macro parameters:
+- Category
+- Listing title
+- Listing number
+- File tag
+
+Allows reuse for multiple lab categories.
+
+---
+
+## Output
+
+Generates RTF files:
+
+- lab_C.rtf
+- lab_H.rtf
+
+Each containing properly paginated abnormal listings.
+
+---
+
+## Clinical Relevance
+
+- CSR Section 16.2.x listings
+- Abnormal laboratory value reporting
+- Population safety review
+- Regulatory submission formatting
+
+---
+
+## Author
+
+Himanshu Rawat  
+Clinical Programming (SAS & R)
