@@ -1,0 +1,243 @@
+/*****************************************************************
+Project : AE Table – Full Hierarchy
+Author  : Himanshu Rawat
+Purpose : TEAE → SOC → PT summary with N (%)
+*****************************************************************/
+
+/*------------------------------------------------------------
+STEP 1 – ADSL
+------------------------------------------------------------*/
+
+data work.adsl;
+
+length usubjid $10 trtp $20 saffl $1;
+
+input usubjid $ trtpn trtp $ saffl $;
+
+datalines;
+01 1 Placebo Y
+02 1 Placebo Y
+03 2 DrugA   Y
+04 2 DrugA   Y
+05 3 DrugB   Y
+06 3 DrugB   Y
+07 4 DrugC   Y
+08 4 DrugC   Y
+;
+run;
+
+
+/*------------------------------------------------------------
+STEP 2 – ADAE
+------------------------------------------------------------*/
+
+data work.adae;
+
+length usubjid $10 
+       aebodsys $40 
+       aedecod $40 
+       trtemfl $1;
+
+input usubjid $ aebodsys $ aedecod $ trtemfl $;
+
+datalines;
+01 Gastrointestinal Vomiting Y
+01 Gastrointestinal Nausea Y
+02 Cardiac Tachycardia Y
+03 Gastrointestinal Diarrhea Y
+04 Nervous Headache Y
+05 Cardiac Palpitation Y
+06 Nervous Dizziness Y
+08 Gastrointestinal Vomiting Y
+;
+run;
+
+
+/*------------------------------------------------------------
+STEP 3 – Safety Population
+------------------------------------------------------------*/
+
+data adsl_saf;
+set work.adsl;
+where saffl="Y";
+run;
+
+
+/*------------------------------------------------------------
+STEP 4 – Denominator
+------------------------------------------------------------*/
+
+proc sql;
+create table denom as
+select trtpn,
+       trtp,
+       count(distinct usubjid) as bigN
+from adsl_saf
+group by trtpn, trtp
+order by trtpn;
+quit;
+
+
+/*------------------------------------------------------------
+STEP 5 – Merge ADAE + ADSL
+------------------------------------------------------------*/
+
+proc sql;
+create table ae_saf as
+select a.usubjid,
+       b.trtpn,
+       b.trtp,
+       a.aebodsys,
+       a.aedecod
+from adae as a
+inner join adsl_saf as b
+on a.usubjid=b.usubjid
+where a.trtemfl="Y";
+quit;
+
+
+/*------------------------------------------------------------
+STEP 6 – TEAE Row
+------------------------------------------------------------*/
+
+proc sql;
+create table line1 as
+select trtpn,
+       trtp,
+       count(distinct usubjid) as count
+from ae_saf
+group by trtpn, trtp;
+quit;
+
+
+/*------------------------------------------------------------
+STEP 7 – SOC Level
+------------------------------------------------------------*/
+
+proc sql;
+create table soc as
+select trtpn,
+       trtp,
+       aebodsys,
+       count(distinct usubjid) as count
+from ae_saf
+group by trtpn, trtp, aebodsys;
+quit;
+
+
+/*------------------------------------------------------------
+STEP 8 – PT Level
+------------------------------------------------------------*/
+
+proc sql;
+create table pt as
+select trtpn,
+       trtp,
+       aebodsys,
+       aedecod,
+       count(distinct usubjid) as count
+from ae_saf
+group by trtpn, trtp, aebodsys, aedecod;
+quit;
+
+
+/*------------------------------------------------------------
+STEP 9 – Build Hierarchy
+------------------------------------------------------------*/
+
+data all_counts;
+
+length display $100 level 8;
+
+set line1(in=a)
+    soc(in=b)
+    pt(in=c);
+
+if a then do;
+    display="Subjects with ≥1 TEAE";
+    level=1;
+end;
+
+else if b then do;
+    display=upcase(aebodsys);
+    level=2;
+end;
+
+else if c then do;
+    display=cats("   ",propcase(aedecod));
+    level=3;
+end;
+
+run;
+
+
+/*------------------------------------------------------------
+STEP 10 – Add Percentages
+------------------------------------------------------------*/
+
+proc sql;
+create table pct as
+select a.*,
+       b.bigN,
+       (a.count/b.bigN)*100 as pct format=8.1
+from all_counts as a
+left join denom as b
+on a.trtpn=b.trtpn;
+quit;
+
+
+data pct2;
+set pct;
+length npct $20;
+npct=cats(put(count,3.),
+          " (",
+          put(pct,5.1),
+          "%)");
+run;
+
+
+/*------------------------------------------------------------
+STEP 11 – Transpose
+------------------------------------------------------------*/
+
+proc sort data=pct2;
+by level display trtpn;
+run;
+
+proc transpose data=pct2
+out=final(drop=_name_)
+prefix=trt_;
+
+by level display;
+id trtpn;
+var npct;
+run;
+
+
+/*------------------------------------------------------------
+STEP 12 – Output
+------------------------------------------------------------*/
+
+ods rtf file="AE_Table_14_1_4.rtf" style=journal;
+
+title1 "AIRIS PHARMA Private Limited.";
+title2 "Protocol: 043-1810";
+title3 "Adverse Events (TEAE) by SOC and Preferred Term";
+
+proc report data=final nowd;
+
+column display trt_1 trt_2 trt_3 trt_4;
+
+define display / "System Organ Class / Preferred Term";
+define trt_1 / "Placebo";
+define trt_2 / "DrugA";
+define trt_3 / "DrugB";
+define trt_4 / "DrugC";
+
+run;
+
+ods rtf close;
+
+/*****************************************************************
+End of Program
+*****************************************************************/
