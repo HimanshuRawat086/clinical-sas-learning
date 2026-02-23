@@ -1295,3 +1295,74 @@ Used in:
 
 Himanshu Rawat  
 Clinical SAS Programming Portfolio
+
+# Adverse Event Table (Full Hierarchy: TEAE → SOC → PT)
+
+## 📌 Objective
+
+Generate a CSR-style Adverse Event summary table including:
+
+- Subjects with ≥1 TEAE
+- System Organ Class (SOC)
+- Preferred Term (PT)
+- N (%)
+- Treatment group comparison
+
+---
+
+## 📊 Table Structure
+
+Subjects with ≥1 TEAE  
+   → System Organ Class  
+      → Preferred Term  
+
+Each cell displays:
+
+N (Percentage)
+
+---
+
+## 🧠 Programming Techniques Used
+
+- Safety population filtering
+- ADAE–ADSL merge
+- Distinct subject counting
+- Denominator calculation
+- Hierarchical row construction
+- Indentation logic
+- Percentage formatting
+- PROC TRANSPOSE
+- PROC REPORT
+- ODS RTF export
+
+---
+
+## 📂 Datasets
+
+### ADSL
+- USUBJID
+- TRTPN / TRTP
+- SAFFL
+
+### ADAE
+- USUBJID
+- AEBODSYS (SOC)
+- AEDECOD (PT)
+- TRTEMFL
+
+---
+
+## 📈 Clinical Relevance
+
+Represents CSR Section 14.x safety table:
+
+- Required for regulatory submissions
+- Used in Phase II & Phase III trials
+- Core safety programming skill
+
+---
+
+## 👨‍💻 Author
+
+Himanshu Rawat  
+Clinical SAS Programming Portfolio
