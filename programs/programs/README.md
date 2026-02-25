@@ -1366,3 +1366,68 @@ Represents CSR Section 14.x safety table:
 
 Himanshu Rawat  
 Clinical SAS Programming Portfolio
+
+# Shift Table (Baseline → Post-Baseline Category)
+
+## 📌 Objective
+
+Generate a CSR-style Shift Table showing movement of subjects from:
+
+Baseline Category → Post-Baseline Category
+
+Categories:
+
+- LOW
+- NORMAL
+- HIGH
+- MISSING
+
+---
+
+## 📊 Table Structure
+
+Treatment | Parameter | Baseline | LOW | NORMAL | HIGH | MISSING
+
+Each cell represents subject count.
+
+---
+
+## 🧠 Programming Concepts Used
+
+- Baseline vs Post-baseline identification
+- Category variable (BNRIND / ANRIND)
+- Cross-tabulation logic
+- PROC FREQ / PROC SUMMARY
+- PROC TRANSPOSE
+- Pivot-style table generation
+- PROC REPORT layout
+- ODS RTF export
+
+---
+
+## 📂 Typical Dataset Structure (ADLB)
+
+- USUBJID
+- TRTPN
+- PARAM
+- AVISITN
+- BNRIND (Baseline flag)
+- ANRIND (Analysis category)
+
+---
+
+## 📈 Clinical Relevance
+
+Shift tables are used in:
+
+- Lab summary tables
+- Safety analysis
+- Regulatory CSR submissions
+- Phase II & III studies
+
+---
+
+## 👨‍💻 Author
+
+Himanshu Rawat  
+Clinical SAS Programming Portfolio
