@@ -1,0 +1,137 @@
+/*****************************************************************
+Project : Shift Table (Baseline → Post-Baseline)
+Author  : Himanshu Rawat
+Purpose : Category shift analysis
+*****************************************************************/
+
+/*------------------------------------------------------------
+STEP 1 – Dummy ADLB Dataset
+------------------------------------------------------------*/
+
+data work.adlb;
+
+length usubjid $10 
+       param $20
+       trtpn 8
+       bnrind $8
+       anrind $8;
+
+input usubjid $ trtpn param $ avisitn bnrind $ anrind $;
+
+datalines;
+01 1 ALT 0 NORMAL NORMAL
+01 1 ALT 2 NORMAL HIGH
+02 1 ALT 0 LOW LOW
+02 1 ALT 2 LOW NORMAL
+03 2 ALT 0 NORMAL NORMAL
+03 2 ALT 2 NORMAL HIGH
+04 2 ALT 0 HIGH HIGH
+04 2 ALT 2 HIGH NORMAL
+;
+run;
+
+
+/*------------------------------------------------------------
+STEP 2 – Separate Baseline
+------------------------------------------------------------*/
+
+data base;
+set work.adlb;
+where avisitn=0;
+keep usubjid trtpn param bnrind;
+run;
+
+
+/*------------------------------------------------------------
+STEP 3 – Separate Post-Baseline
+------------------------------------------------------------*/
+
+data post;
+set work.adlb;
+where avisitn>0;
+keep usubjid trtpn param anrind;
+run;
+
+
+/*------------------------------------------------------------
+STEP 4 – Merge Baseline & Post
+------------------------------------------------------------*/
+
+proc sort data=base; by usubjid param; run;
+proc sort data=post; by usubjid param; run;
+
+data shift;
+merge base post;
+by usubjid param;
+run;
+
+
+/*------------------------------------------------------------
+STEP 5 – Create Shift Counts
+------------------------------------------------------------*/
+
+proc freq data=shift noprint;
+tables trtpn*param*bnrind*anrind
+/out=counts;
+run;
+
+
+/*------------------------------------------------------------
+STEP 6 – Reshape Data
+------------------------------------------------------------*/
+
+data counts2;
+set counts;
+length col $20;
+
+if anrind="LOW" then col="col_LOW";
+else if anrind="NORMAL" then col="col_NORMAL";
+else if anrind="HIGH" then col="col_HIGH";
+else col="col_MISSING";
+run;
+
+proc sort data=counts2;
+by trtpn param bnrind col;
+run;
+
+proc transpose data=counts2
+out=final2(drop=_name_)
+prefix=col_;
+
+by trtpn param bnrind;
+id col;
+var count;
+run;
+
+
+/*------------------------------------------------------------
+STEP 7 – Final Report
+------------------------------------------------------------*/
+
+ods rtf file="Shift_Table_14_1_6.rtf" style=journal;
+
+title1 "AIRIS PHARMA Private Limited.";
+title2 "Protocol: 043-1810";
+title3 "Shift Table (Baseline → Post-Baseline)";
+
+proc report data=final2 nowd;
+
+column trtpn param bnrind  
+       col_LOW col_NORMAL col_HIGH col_MISSING;
+
+define trtpn  / group "Treatment";
+define param  / group "Parameter";
+define bnrind / group "Baseline";
+
+define col_LOW     / "Low";
+define col_NORMAL  / "Normal";
+define col_HIGH    / "High";
+define col_MISSING / "Missing";
+
+run;
+
+ods rtf close;
+
+/*****************************************************************
+End of Program
+*****************************************************************/
