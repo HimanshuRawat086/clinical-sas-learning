@@ -1,0 +1,173 @@
+/*****************************************************************
+Project : Time-to-Event Analysis – Overall Survival
+Author  : Himanshu Rawat
+Purpose : KM Median, Log-Rank p-value, HR (Cox Model)
+*****************************************************************/
+
+/*------------------------------------------------------------
+STEP 1 – Merge ADSL & ADTTE (Safety Population Only)
+------------------------------------------------------------*/
+
+proc sort data=work.adsl;  by usubjid; run;
+proc sort data=work.adtte; by usubjid; run;
+
+data work.adtte1;
+
+merge work.adtte(in=a)
+      work.adsl(in=b keep=usubjid trt01p saffl);
+
+by usubjid;
+
+if a and b;
+if saffl='Y';
+if paramcd='OS';
+
+run;
+
+
+/*------------------------------------------------------------
+STEP 2 – Kaplan-Meier Analysis
+------------------------------------------------------------*/
+
+ods output
+Quartiles = quartile
+HomTests  = pvalue;
+
+proc lifetest data=work.adtte1 notable;
+time aval*cnsr(1);
+strata trt01p;
+run;
+
+
+/*------------------------------------------------------------
+STEP 3 – Extract Median Survival
+------------------------------------------------------------*/
+
+%macro get_median;
+
+%if %sysfunc(exist(work.quartile)) %then %do;
+
+data median1;
+set quartile;
+where Percent=50;
+
+length value $40;
+
+value = catx(' ',
+             put(Estimate,8.2),
+             '(',
+             put(LowerLimit,8.2), ',',
+             put(UpperLimit,8.2),
+             ')');
+
+keep trt01p value;
+run;
+
+%end;
+
+%else %do;
+
+data median1;
+length trt01p $20 value $40;
+
+trt01p="DrugA"; value="NE"; output;
+trt01p="DrugB"; value="NE"; output;
+
+run;
+
+%end;
+
+%mend;
+
+%get_median;
+
+
+/*------------------------------------------------------------
+STEP 4 – Extract Log-Rank p-value
+------------------------------------------------------------*/
+
+data pvl1;
+
+set pvalue;
+where Test='Log-Rank';
+
+length trt01p $20 value $20;
+
+trt01p='Comparison';
+value=put(ProbChiSq,8.4);
+
+keep trt01p value;
+
+run;
+
+
+/*------------------------------------------------------------
+STEP 5 – Cox Model (Hazard Ratio)
+------------------------------------------------------------*/
+
+ods output HazardRatios=hr;
+
+proc phreg data=work.adtte1;
+
+class trt01p (ref='DrugB');
+model aval*cnsr(1)=trt01p;
+hazardratio trt01p;
+
+run;
+
+
+/*------------------------------------------------------------
+STEP 6 – Format Hazard Ratio
+------------------------------------------------------------*/
+
+data hr1;
+
+set hr;
+
+length trt01p $20 value $40;
+
+trt01p='Comparison';
+
+value = catx(' ',
+             put(HazardRatio,8.2),
+             '(',
+             put(HRLowerCL,8.2), ',',
+             put(HRUpperCL,8.2),
+             ')');
+
+keep trt01p value;
+
+run;
+
+
+/*------------------------------------------------------------
+STEP 7 – Final Output
+------------------------------------------------------------*/
+
+ods rtf file="TTE_Table.rtf" style=journal;
+
+title1 "AIRIS PHARMA Private Limited.";
+title2 "Protocol: 043-1810";
+title3 "Time-to-Event Analysis – Overall Survival";
+
+proc report data=median1 nowd;
+column trt01p value;
+define trt01p / "Treatment";
+define value  / "Median Survival (95% CI)";
+run;
+
+proc report data=pvl1 nowd;
+column value;
+define value / "Log-Rank p-value";
+run;
+
+proc report data=hr1 nowd;
+column value;
+define value / "Hazard Ratio (95% CI)";
+run;
+
+ods rtf close;
+
+/*****************************************************************
+End of Program
+*****************************************************************/
