@@ -1,0 +1,91 @@
+/*****************************************************************
+Project : Mean ± Standard Error Plot
+Author  : Himanshu Rawat
+Purpose : Treatment group comparison visualization
+*****************************************************************/
+
+/*------------------------------------------------------------
+STEP 1 – Create Dummy Dataset
+------------------------------------------------------------*/
+
+data work.score;
+
+length group $1;
+
+input group $ value;
+
+datalines;
+A 20
+A 25
+A 27
+A 22
+B 30
+B 28
+B 35
+B 32
+C 18
+C 21
+C 19
+C 20
+;
+run;
+
+
+/*------------------------------------------------------------
+STEP 2 – Calculate Mean and Standard Error
+------------------------------------------------------------*/
+
+proc means data=work.score noprint;
+class group;
+var value;
+
+output out=stats
+mean=mean
+stderr=stderr;
+
+run;
+
+
+/*------------------------------------------------------------
+STEP 3 – Calculate Upper and Lower Limits
+------------------------------------------------------------*/
+
+data stat2;
+
+set stats;
+
+if _TYPE_=1;  /* Keep only group-level rows */
+
+mean_upper = mean + stderr;
+mean_lower = mean - stderr;
+
+run;
+
+
+/*------------------------------------------------------------
+STEP 4 – Create Error Bar Plot
+------------------------------------------------------------*/
+
+ods graphics / reset width=6in height=4in imagename="mean_se_plot";
+
+proc sgplot data=stat2;
+
+scatter x=group y=mean /
+        yerrorupper=mean_upper
+        yerrorlower=mean_lower
+        markerattrs=(symbol=circlefilled
+                     color=blue
+                     size=12);
+
+xaxis label="Treatment Group";
+yaxis label="Mean ± Standard Error";
+
+title "Mean with Standard Error Plot";
+
+run;
+
+ods graphics off;
+
+/*****************************************************************
+End of Program
+*****************************************************************/
