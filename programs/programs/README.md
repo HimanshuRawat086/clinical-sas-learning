@@ -1489,3 +1489,51 @@ Time-to-event analysis is used in:
 
 Himanshu Rawat  
 Clinical SAS Programming Portfolio
+
+# Mean ± Standard Error Plot (Error Bar Graph)
+
+## 📌 Objective
+
+Create a treatment comparison graph displaying:
+
+- Mean values
+- Standard Error (SE)
+- Error bars (Mean ± SE)
+
+---
+
+## 📊 Dataset
+
+Dummy dataset containing:
+
+- GROUP (A, B, C)
+- VALUE (numeric measurement)
+
+---
+
+## 🧠 Programming Techniques Used
+
+- PROC MEANS
+- Standard Error calculation
+- Data step derivation
+- PROC SGPLOT
+- Error bar plotting (YERRORUPPER / YERRORLOWER)
+- ODS Graphics
+
+---
+
+## 📈 Clinical Relevance
+
+Used in:
+
+- Efficacy summaries
+- Dose comparison studies
+- Clinical presentations
+- Statistical reports
+
+---
+
+## 👨‍💻 Author
+
+Himanshu Rawat  
+Clinical SAS Programming Portfolio
