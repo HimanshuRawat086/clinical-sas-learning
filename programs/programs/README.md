@@ -1431,3 +1431,61 @@ Shift tables are used in:
 
 Himanshu Rawat  
 Clinical SAS Programming Portfolio
+
+# Time-to-Event Analysis (Overall Survival)
+
+## 📌 Objective
+
+Generate a CSR-style Time-to-Event (TTE) summary including:
+
+- Kaplan–Meier Median Survival
+- 95% Confidence Interval
+- Log-Rank p-value
+- Hazard Ratio (Cox Model)
+- 95% CI for HR
+
+---
+
+## 📊 Analysis Performed
+
+1. Safety population filtering (ADSL)
+2. Merge with ADTTE
+3. Kaplan–Meier survival analysis (PROC LIFETEST)
+4. Median survival extraction
+5. Log-rank p-value extraction
+6. Cox proportional hazards model (PROC PHREG)
+7. Hazard Ratio with CI
+8. Structured RTF output
+
+---
+
+## 📂 Datasets Used
+
+### ADSL
+- USUBJID
+- TRT01P
+- SAFFL
+
+### ADTTE
+- USUBJID
+- AVAL (Time)
+- CNSR (Censor flag)
+- PARAMCD (OS)
+
+---
+
+## 📈 Clinical Relevance
+
+Time-to-event analysis is used in:
+
+- Oncology trials
+- Survival endpoints
+- Regulatory submissions
+- CSR Section 14.x
+
+---
+
+## 👨‍💻 Author
+
+Himanshu Rawat  
+Clinical SAS Programming Portfolio
