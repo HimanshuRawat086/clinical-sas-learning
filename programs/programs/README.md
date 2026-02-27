@@ -1537,3 +1537,56 @@ Used in:
 
 Himanshu Rawat  
 Clinical SAS Programming Portfolio
+
+# Objective Response Rate (ORR) Analysis
+
+## 📌 Objective
+
+To calculate Objective Response Rate (ORR) by treatment group including:
+
+- N (%)
+- Exact Binomial 95% Confidence Interval
+- Risk Difference (Treatment Comparison)
+- Chi-square p-value
+
+---
+
+## 📊 Definition
+
+ORR = Subjects with CR or PR / Total Subjects
+
+Where:
+
+- CR = Complete Response
+- PR = Partial Response
+
+---
+
+## 🧠 Programming Techniques Used
+
+- Binary endpoint derivation
+- PROC FREQ
+- Exact binomial CI
+- Risk difference calculation
+- Chi-square test
+- ODS OUTPUT extraction
+- Dataset merging
+- CSR-style table preparation
+
+---
+
+## 📈 Clinical Relevance
+
+ORR is commonly used in:
+
+- Oncology trials
+- Phase II studies
+- Regulatory submissions
+- Efficacy endpoints
+
+---
+
+## 👨‍💻 Author
+
+Himanshu Rawat  
+Clinical SAS Programming Portfolio
