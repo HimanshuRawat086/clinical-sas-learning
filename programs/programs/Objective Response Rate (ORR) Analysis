@@ -1,0 +1,130 @@
+/*****************************************************************
+Project : Objective Response Rate (ORR) Analysis
+Author  : Himanshu Rawat
+Purpose : ORR with CI, Risk Difference & p-value
+*****************************************************************/
+
+/*------------------------------------------------------------
+STEP 1 – Create Dummy ADRS Dataset
+------------------------------------------------------------*/
+
+data work.adrs;
+
+length usubjid $10 trt01p $6 avalc $2;
+
+input usubjid $ trt01p $ avalc $;
+
+datalines;
+SUBJ01 DrugA CR
+SUBJ02 DrugA PR
+SUBJ03 DrugA SD
+SUBJ04 DrugA PR
+SUBJ05 DrugB PD
+SUBJ06 DrugB SD
+SUBJ07 DrugB PR
+SUBJ08 DrugB PD
+;
+run;
+
+
+/*------------------------------------------------------------
+STEP 2 – Derive ORR Variable
+------------------------------------------------------------*/
+
+data adrs2;
+
+set work.adrs;
+
+if avalc in ('CR','PR') then orr=1;
+else orr=0;
+
+run;
+
+
+/*------------------------------------------------------------
+STEP 3 – Calculate ORR N (%)
+------------------------------------------------------------*/
+
+proc freq data=adrs2 noprint;
+tables trt01p*orr / out=counts;
+run;
+
+proc freq data=adrs2 noprint;
+tables trt01p / out=denom;
+run;
+
+proc sort data=counts; by trt01p; run;
+proc sort data=denom;  by trt01p; run;
+
+data pct;
+
+merge counts denom(rename=(count=total));
+by trt01p;
+
+if orr=1;
+
+percent=(count/total)*100;
+
+npct=cats(put(count,3.),
+          " (",
+          put(percent,5.1),
+          "%)");
+
+run;
+
+
+/*------------------------------------------------------------
+STEP 4 – Exact Binomial CI
+------------------------------------------------------------*/
+
+ods output Binomial=ci;
+
+proc freq data=adrs2;
+by trt01p;
+tables orr / binomial(level='1');
+exact binomial;
+run;
+
+
+/*------------------------------------------------------------
+STEP 5 – Risk Difference
+------------------------------------------------------------*/
+
+ods output RiskDiffCol1=rd;
+
+proc freq data=adrs2;
+tables trt01p*orr / riskdiff;
+exact riskdiff;
+run;
+
+
+/*------------------------------------------------------------
+STEP 6 – Chi-square Test
+------------------------------------------------------------*/
+
+ods output ChiSq=chisq;
+
+proc freq data=adrs2;
+tables trt01p*orr / chisq;
+run;
+
+
+/*------------------------------------------------------------
+STEP 7 – Example Simple Output
+------------------------------------------------------------*/
+
+ods rtf file="ORR_Table.rtf" style=journal;
+
+title "Objective Response Rate (ORR)";
+
+proc report data=pct nowd;
+column trt01p npct;
+define trt01p / "Treatment";
+define npct   / "ORR n (%)";
+run;
+
+ods rtf close;
+
+/*****************************************************************
+End of Program
+*****************************************************************/
