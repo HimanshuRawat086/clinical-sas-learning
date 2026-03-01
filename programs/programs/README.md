@@ -1644,3 +1644,37 @@ Waterfall plots are used in:
 
 Himanshu Rawat  
 Clinical SAS Programming Portfolio
+
+# Forest Plot – Odds Ratios with 95% CI
+
+## 📌 Objective
+Generate a forest plot displaying:
+
+- Point estimate (Odds Ratio / Hazard Ratio)
+- 95% Confidence Interval
+- Reference line at 1.0
+
+---
+
+## 📊 Visual Elements
+- Square marker = estimate
+- Horizontal line = 95% CI
+- Vertical red dashed line = reference (1.0)
+
+---
+
+## 🧠 Concepts Used
+- PROC SGPLOT
+- SCATTER statement
+- HIGHLOW statement
+- Reference line
+- Clinical-style axis formatting
+
+---
+
+## 📈 Clinical Relevance
+Used in:
+- Subgroup analysis
+- Safety summaries
+- Hazard ratio reporting
+- CSR Section 14.x
