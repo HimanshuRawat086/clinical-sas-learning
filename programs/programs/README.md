@@ -1678,3 +1678,33 @@ Used in:
 - Safety summaries
 - Hazard ratio reporting
 - CSR Section 14.x
+
+# Kaplan–Meier Survival Curve
+
+## 📌 Objective
+Generate a Kaplan–Meier survival curve by treatment group.
+
+---
+
+## 📊 Analysis Includes
+- Time-to-event variable
+- Censoring indicator
+- Survival probability curves
+- Treatment comparison
+
+---
+
+## 🧠 Programming Techniques Used
+- PROC LIFETEST
+- STRATA statement
+- Survival plotting
+- ODS Graphics
+
+---
+
+## 📈 Clinical Relevance
+Used in:
+- Oncology trials
+- Overall Survival (OS)
+- Progression-Free Survival (PFS)
+- Regulatory submissions
