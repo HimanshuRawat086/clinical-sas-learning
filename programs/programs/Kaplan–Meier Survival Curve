@@ -1,0 +1,37 @@
+/*****************************************************************
+Project : Kaplan–Meier Survival Curve
+Author  : Himanshu Rawat
+Purpose : Time-to-event visualization
+*****************************************************************/
+
+data work.adtte;
+
+length trt $1;
+
+input trt $ time status;
+
+datalines;
+A 1 1
+A 2 1
+A 3 0
+A 4 1
+B 1 0
+B 2 1
+B 3 1
+B 4 0
+;
+run;
+
+ods graphics / reset width=7in height=5in imagename="km_curve";
+
+proc lifetest data=work.adtte
+              plots=survival(cb=hw);
+
+time time*status(0);
+strata trt;
+
+title "Kaplan–Meier Survival Curve";
+
+run;
+
+ods graphics off;
