@@ -1,0 +1,102 @@
+/*****************************************************************
+Project : Waterfall Plot – Tumor Response
+Author  : Himanshu Rawat
+Purpose : Percent change from baseline visualization
+*****************************************************************/
+
+/*==============================================================
+STEP 1 – Create Dummy Tumor Dataset
+==============================================================*/
+
+data work.adtr;
+
+length usubjid $8 visit 8 aval 8;
+
+input usubjid $ visit aval;
+
+datalines;
+SUBJ01 1 70
+SUBJ01 2 60
+SUBJ01 3 55
+SUBJ02 1 80
+SUBJ02 2 90
+SUBJ02 3 95
+SUBJ03 1 65
+SUBJ03 2 50
+SUBJ03 3 40
+;
+run;
+
+
+/*==============================================================
+STEP 2 – Calculate Percent Change from Baseline
+==============================================================*/
+
+proc sort data=work.adtr;
+by usubjid visit;
+run;
+
+data work.adtr_pct;
+
+set work.adtr;
+by usubjid;
+
+retain baseline;
+
+if first.usubjid then baseline=aval;
+
+pctchg=((aval-baseline)/baseline)*100;
+
+run;
+
+
+/*==============================================================
+STEP 3 – Keep Best (Last) Value Per Subject
+==============================================================*/
+
+data work.final;
+
+set work.adtr_pct;
+by usubjid;
+
+if last.usubjid;
+
+run;
+
+
+/*==============================================================
+STEP 4 – Sort for Waterfall Effect
+==============================================================*/
+
+proc sort data=work.final;
+by pctchg;
+run;
+
+
+/*==============================================================
+STEP 5 – Generate Waterfall Plot
+==============================================================*/
+
+ods graphics / reset width=9in height=5in imagename="waterfall_plot";
+
+proc sgplot data=work.final;
+
+vbar usubjid /
+     response=pctchg
+     datalabel;
+
+refline -30 / axis=y lineattrs=(pattern=dash);
+refline  20 / axis=y lineattrs=(pattern=dash);
+
+xaxis display=none;
+yaxis label="Percent Change from Baseline";
+
+title "Waterfall Plot – Percent Tumor Change";
+
+run;
+
+ods graphics off;
+
+/*****************************************************************
+End of Program
+*****************************************************************/
