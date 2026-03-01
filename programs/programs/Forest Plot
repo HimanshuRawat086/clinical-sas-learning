@@ -1,0 +1,41 @@
+/*****************************************************************
+Project : Forest Plot
+Author  : Himanshu Rawat
+Purpose : Odds Ratio / HR visualization
+*****************************************************************/
+
+data work.forest;
+
+length parameter $20;
+
+input parameter $ estimate lowerci upperci;
+
+datalines;
+Param1  0.80  0.60  1.10
+Param2  1.50  1.10  2.00
+Param3  0.70  0.50  0.95
+Param4  1.20  0.90  1.60
+Param5  0.95  0.75  1.25
+;
+run;
+
+ods graphics / reset width=8in height=5in imagename="forest_plot";
+
+proc sgplot data=work.forest;
+
+highlow y=parameter low=lowerci high=upperci /
+         lineattrs=(thickness=2);
+
+scatter y=parameter x=estimate /
+        markerattrs=(symbol=squarefilled size=10);
+
+refline 1 / axis=x lineattrs=(pattern=shortdash color=red);
+
+xaxis label="Odds Ratio (95% CI)";
+yaxis label="Parameter";
+
+title "Forest Plot – Odds Ratios with 95% CI";
+
+run;
+
+ods graphics off;
