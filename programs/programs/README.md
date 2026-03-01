@@ -1590,3 +1590,57 @@ ORR is commonly used in:
 
 Himanshu Rawat  
 Clinical SAS Programming Portfolio
+
+# Waterfall Plot – Percent Tumor Change from Baseline
+
+## 📌 Objective
+
+Generate an oncology-style Waterfall Plot showing:
+
+- Percent change from baseline tumor size
+- Best post-baseline response per subject
+- Visual threshold lines (-30% and +20%)
+
+---
+
+## 📊 Calculation
+
+Percent Change = ((Post-baseline - Baseline) / Baseline) × 100
+
+The plot displays:
+
+- One bar per subject
+- Sorted by percent change
+- Horizontal reference lines:
+  - -30% (Response threshold)
+  - +20% (Progression threshold)
+
+---
+
+## 🧠 Programming Techniques Used
+
+- Baseline derivation (RETAIN + BY-group)
+- Percent change calculation
+- Last observation per subject
+- Sorting by response
+- PROC SGPLOT (VBAR)
+- Reference lines
+- ODS Graphics
+
+---
+
+## 📈 Clinical Relevance
+
+Waterfall plots are used in:
+
+- Oncology clinical trials
+- Tumor response evaluation (RECIST)
+- Phase II efficacy reporting
+- Regulatory presentations
+
+---
+
+## 👨‍💻 Author
+
+Himanshu Rawat  
+Clinical SAS Programming Portfolio
