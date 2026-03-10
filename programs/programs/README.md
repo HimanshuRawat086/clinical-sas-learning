@@ -1773,3 +1773,85 @@ This example is simplified for learning clinical SAS programming.
 ## Key Derivations
 
 ### SCFL – Screened Flag
+
+# ADaM ADAE Creation from SDTM
+
+## Overview
+
+This project demonstrates how to derive the **ADaM ADAE (Adverse Event Analysis Dataset)** from SDTM datasets.
+
+The program integrates information from:
+
+- SDTM.AE (Adverse Events)
+- ADSL (Subject-Level Dataset)
+- SUPPAE (Supplemental AE Qualifiers)
+
+The output dataset ADAE is commonly used in clinical safety analyses.
+
+---
+
+## Input Datasets
+
+### AE – Adverse Events
+
+| Variable | Description |
+|--------|-------------|
+| USUBJID | Unique Subject Identifier |
+| AESEQ | AE sequence number |
+| AETERM | Reported event |
+| AEDECOD | Coded event |
+| AESTDTC | AE start date (character) |
+| AEENDTC | AE end date (character) |
+
+---
+
+### ADSL – Subject Level Dataset
+
+| Variable | Description |
+|--------|-------------|
+| USUBJID | Subject identifier |
+| TRT01P | Planned treatment |
+| TRT01A | Actual treatment |
+| TRTSDT | Treatment start date |
+| TRTEDT | Treatment end date |
+
+---
+
+### SUPPAE – Supplemental AE
+
+| Variable | Description |
+|--------|-------------|
+| USUBJID | Subject identifier |
+| IDVARVAL | AE sequence reference |
+| QNAM | Supplemental variable name |
+| QVAL | Supplemental variable value |
+
+Example supplemental variable:
+- AESER → Serious AE flag
+
+---
+
+## Output Dataset
+
+### ADAE – Adverse Event Analysis Dataset
+
+| Variable | Description |
+|--------|-------------|
+| USUBJID | Subject ID |
+| AESEQ | Event sequence |
+| AETERM | Reported event |
+| AEDECOD | Standardized event |
+| ASTDT | Analysis start date |
+| AENDT | Analysis end date |
+| ASTDY | Study day start |
+| AENDY | Study day end |
+| ADURN | AE duration |
+| AESER | Serious AE flag |
+
+---
+
+## Key Derivations
+
+### ASTDT / AENDT
+
+Convert SDTM character dates into numeric SAS dates.
