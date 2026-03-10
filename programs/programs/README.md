@@ -1855,3 +1855,33 @@ Example supplemental variable:
 ### ASTDT / AENDT
 
 Convert SDTM character dates into numeric SAS dates.
+
+# ADLB Creation from SDTM LB
+
+## Overview
+
+This program derives the ADaM dataset **ADLB (Analysis Laboratory Dataset)** using SDTM laboratory data (LB), supplemental qualifiers (SUPPLB), and subject-level data (ADSL).
+
+## Input Datasets
+
+LB – Laboratory SDTM dataset
+SUPPLB – Supplemental qualifiers for LB
+ADSL – Subject level dataset containing treatment start date
+
+## Key Processing Steps
+
+1. Convert SUPPLB qualifier structure using transpose.
+2. Merge LB, SUPPLB, and ADSL datasets.
+3. Derive analysis date, time, and datetime variables.
+4. Create parameter variables (PARAMCD, PARAM, PARAMN).
+5. Create analysis values (AVAL, AVALC).
+6. Derive analysis day relative to treatment start date.
+7. Apply CDISC **No Day 0 Rule**.
+
+## Output Dataset
+
+ADAM_ADLB
+
+## Purpose
+
+To prepare laboratory analysis data compliant with **CDISC ADaM standards** for statistical analysis.
