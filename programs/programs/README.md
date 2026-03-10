@@ -1708,3 +1708,68 @@ Used in:
 - Overall Survival (OS)
 - Progression-Free Survival (PFS)
 - Regulatory submissions
+
+# ADaM ADSL Creation from SDTM
+
+## Overview
+
+This project demonstrates how to derive the **ADaM ADSL (Subject Level Analysis Dataset)** from SDTM datasets.
+
+The program creates ADSL using information from:
+
+- SDTM.DM (Demographics)
+- SDTM.DS (Disposition)
+
+This example is simplified for learning clinical SAS programming.
+
+---
+
+## Input Datasets
+
+### DM – Demographics
+
+| Variable | Description |
+|--------|-------------|
+| USUBJID | Unique Subject ID |
+| RFXSTDTC | Treatment Start Datetime |
+| RFICDTC | Informed Consent Date |
+| DTHDTC | Death Date |
+| TRT01P | Planned Treatment |
+| TRT01A | Actual Treatment |
+
+---
+
+### DS – Disposition
+
+| Variable | Description |
+|--------|-------------|
+| USUBJID | Unique Subject ID |
+| DSCAT | Disposition Category |
+| DSDECOD | Disposition Decode |
+| DSTERM | Disposition Term |
+| DSSTDTC | Disposition Date |
+
+---
+
+## Output Dataset
+
+### ADSL – Subject Level Analysis Dataset
+
+| Variable | Description |
+|--------|-------------|
+| USUBJID | Subject ID |
+| SCFL | Screened Flag |
+| PKFL | PK Population Flag |
+| ENRLFL | Enrolled Flag |
+| RFICDT | Consent Date |
+| DTHDT | Death Date |
+| TRT01PN | Planned Treatment Numeric |
+| TRT01AN | Actual Treatment Numeric |
+| EOSSTT | End of Study Status |
+| EOSDT | End of Study Date |
+
+---
+
+## Key Derivations
+
+### SCFL – Screened Flag
