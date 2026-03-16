@@ -1885,3 +1885,33 @@ ADAM_ADLB
 ## Purpose
 
 To prepare laboratory analysis data compliant with **CDISC ADaM standards** for statistical analysis.
+
+# ADRS Creation from SDTM RS
+
+## Overview
+
+This program derives the ADaM dataset **ADRS (Analysis Response Dataset)** using SDTM response data (RS) and subject-level data (ADSL).
+
+## Input Datasets
+
+RS – Tumor response dataset
+ADSL – Subject level dataset containing treatment start and death dates
+
+## Key Processing Steps
+
+1. Merge RS and ADSL datasets using USUBJID.
+2. Filter overall tumor response evaluated by investigator.
+3. Derive parameter variables describing tumor response.
+4. Convert response categories (CR, PR, SD, PD) into numeric values.
+5. Derive analysis date and analysis day relative to treatment start.
+6. Identify last response per visit date and flag as analysis record.
+7. Create death parameter records from ADSL.
+8. Combine response and death records into final ADRS dataset.
+
+## Output Dataset
+
+ADRS
+
+## Purpose
+
+The ADRS dataset supports **tumor response analysis under RECIST 1.1 criteria** and enables derivation of endpoints such as objective response rate and progression events.
