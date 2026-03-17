@@ -1916,31 +1916,40 @@ ADRS
 
 The ADRS dataset supports **tumor response analysis under RECIST 1.1 criteria** and enables derivation of endpoints such as objective response rate and progression events.
 
-# Overall Survival (OS) Derivation
+# ADTTE Derivation (Time-to-Event Dataset)
 
 ## Overview
 
-This program derives the **Overall Survival (OS)** parameter for the ADaM response dataset using subject-level data (ADSL) and death event data (ADRS_DEATH).
+This program derives the ADaM dataset **ADTTE** for time-to-event analyses including:
+
+* Duration of Response (DOR)
+* Overall Survival (OS)
 
 ## Input Datasets
 
-ADSL – Subject-level dataset containing treatment start date
-ADRS_DEATH – Dataset containing death event dates
+ADSL – Subject level dataset containing treatment start date
+ADRS – Response dataset containing tumor response and event dates
 
 ## Key Processing Steps
 
-1. Sort input datasets by USUBJID.
-2. Merge subject-level data with death event data.
-3. Define OS parameter variables.
-4. Use treatment start date as survival start date.
-5. If a death event exists, record the event date and set CNSR=0.
-6. If the subject is alive, censor at the current date and set CNSR=1.
-7. Calculate survival duration in months.
+1. Split ADRS dataset into event-specific datasets (PD, DEATH, LST, CRSP).
+2. Merge event datasets to create response timelines.
+3. Derive **Duration of Response (DOR)**:
+
+   * Start date = CRSP date
+   * Event date = PD, DEATH, or LST
+4. Derive **Overall Survival (OS)**:
+
+   * Start date = TRTSDT
+   * Event = death
+   * If no death → censor at current date.
+5. Calculate time-to-event duration in months.
+6. Combine DOR and OS datasets to create final **ADTTE dataset**.
 
 ## Output Dataset
 
-ADRS_OS
+ADTTE
 
 ## Purpose
 
-The ADRS_OS dataset is used for **time-to-event analysis**, including Kaplan–Meier survival analysis and estimation of overall survival endpoints.
+The ADTTE dataset supports **time-to-event statistical analyses** such as Kaplan-Meier survival analysis, median survival estimation, and hazard ratio modeling.
