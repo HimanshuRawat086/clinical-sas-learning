@@ -1915,3 +1915,32 @@ ADRS
 ## Purpose
 
 The ADRS dataset supports **tumor response analysis under RECIST 1.1 criteria** and enables derivation of endpoints such as objective response rate and progression events.
+
+# Overall Survival (OS) Derivation
+
+## Overview
+
+This program derives the **Overall Survival (OS)** parameter for the ADaM response dataset using subject-level data (ADSL) and death event data (ADRS_DEATH).
+
+## Input Datasets
+
+ADSL – Subject-level dataset containing treatment start date
+ADRS_DEATH – Dataset containing death event dates
+
+## Key Processing Steps
+
+1. Sort input datasets by USUBJID.
+2. Merge subject-level data with death event data.
+3. Define OS parameter variables.
+4. Use treatment start date as survival start date.
+5. If a death event exists, record the event date and set CNSR=0.
+6. If the subject is alive, censor at the current date and set CNSR=1.
+7. Calculate survival duration in months.
+
+## Output Dataset
+
+ADRS_OS
+
+## Purpose
+
+The ADRS_OS dataset is used for **time-to-event analysis**, including Kaplan–Meier survival analysis and estimation of overall survival endpoints.
