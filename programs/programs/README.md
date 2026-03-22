@@ -1953,3 +1953,62 @@ ADTTE
 ## Purpose
 
 The ADTTE dataset supports **time-to-event statistical analyses** such as Kaplan-Meier survival analysis, median survival estimation, and hazard ratio modeling.
+
+# SDTM DM and SUPPDM Creation
+
+## Overview
+
+This program derives the **SDTM Demographics (DM)** and **SUPPDM** datasets from multiple raw datasets.
+
+## Input Datasets
+
+* RAW_DM – Demographics
+* RAW_DS_IC – Informed Consent
+* RAW_DTH – Death Data
+* RAW_EX – Exposure Data
+* RAW_SV – Subject Visits
+
+## Key Derivations
+
+### USUBJID
+
+Constructed using:
+STUDYID-SITEID-SUBJID
+
+### Consent Date
+
+RFICDTC derived from RFICDAT
+
+### Exposure Dates
+
+* RFXSTDTC → First dose date
+* RFXENDTC → Last dose date
+
+### Reference Dates
+
+* RFSTDTC → Start date
+* RFENDTC → End date
+
+### Death
+
+* DTHDTC → Death date
+* DTHFL → Death flag
+
+### Arm Assignment
+
+Derived from treatment variable EXTRT
+
+### SUPPDM
+
+Created for non-standard variable:
+
+* RACE="OTHER"
+
+## Output Datasets
+
+* DM
+* SUPPDM
+
+## Purpose
+
+To create SDTM-compliant Demographics dataset and supplemental qualifiers for clinical trial analysis.
