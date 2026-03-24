@@ -2012,3 +2012,56 @@ Created for non-standard variable:
 ## Purpose
 
 To create SDTM-compliant Demographics dataset and supplemental qualifiers for clinical trial analysis.
+
+# SDTM AE Creation (Adverse Events)
+
+## Overview
+
+This program derives the **SDTM AE (Adverse Events)** dataset from raw AE data and DM dataset.
+
+## Input Datasets
+
+* RAW_AE – Raw adverse event data
+* DM – Subject reference start date
+
+## Key Derivations
+
+### USUBJID
+
+Constructed using:
+STUDYID-SITEID-SUBJID
+
+### Dates
+
+* AESTDTC → Start date (character)
+* AEENDTC → End date (character)
+
+### Study Day
+
+ASTDY = ASTDT - RFSTDTC + 1
+
+### Duration
+
+AEDUR = AEENDT - AESTDT + 1
+
+### Ongoing Flag
+
+If AEONGO = "Y" → AEENRF = "Ongoing"
+
+## Processing Steps
+
+1. Create AE base dataset
+2. Assign domain and subject identifier
+3. Map variables
+4. Convert date variables
+5. Merge with DM for reference date
+6. Derive study day and duration
+7. Flag ongoing events
+
+## Output Dataset
+
+AE_FINAL
+
+## Purpose
+
+To create SDTM-compliant Adverse Events dataset for safety analysis.
