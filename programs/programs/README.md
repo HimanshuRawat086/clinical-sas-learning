@@ -2065,3 +2065,42 @@ AE_FINAL
 ## Purpose
 
 To create SDTM-compliant Adverse Events dataset for safety analysis.
+
+
+# SDTM TU – New Lesion (NL) Transformation
+
+## Overview
+
+This program converts wide-format tumor data into a long-format SDTM TU dataset for **New Lesions (NL)**.
+
+## Input Dataset
+
+NL – Raw dataset containing multiple tumor locations, methods, and dates per subject.
+
+## Key Concept
+
+Wide → Long transformation using ARRAYS and DO loop.
+
+## Processing Steps
+
+1. Create USUBJID using STUDYID, SITEID, SUBJID
+2. Define arrays for:
+
+   * Tumor location (LOC)
+   * Detection method (METHOD)
+   * Date (DATE)
+3. Loop through each tumor column (1 to 3)
+4. For each non-missing tumor:
+
+   * Assign TULOC, TUMETHOD, TUDTC
+   * Assign standard SDTM variables
+5. Output one record per tumor
+6. Drop raw wide variables
+
+## Output Dataset
+
+TU_NL
+
+## Purpose
+
+To convert multiple tumor records per subject into SDTM-compliant structure for tumor analysis.
