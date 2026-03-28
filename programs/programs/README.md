@@ -2104,3 +2104,68 @@ TU_NL
 ## Purpose
 
 To convert multiple tumor records per subject into SDTM-compliant structure for tumor analysis.
+
+data resist; 
+/* create raw dataset called RESIST (tumor response data) */
+
+length STUDYID $10 SITEID $5 SUBJID $5 
+/* STUDYID = Study ID (study name)
+   SITEID = Site ID (hospital ID)
+   SUBJID = Subject ID (patient ID) */
+
+       TRGRESP $10 NTRGRESP $10 OVRRESP $10;
+/* TRGRESP = Target Response
+   NTRGRESP = Non-Target Response
+   OVRRESP = Overall Response */
+
+input STUDYID $ SITEID $ SUBJID $
+/* read IDs */
+
+      TRGRESP $ NTRGRESP $ OVRRESP $;
+/* read response values */
+
+datalines;
+STUDY1 101 001 CR PR CR
+/* patient 001 → target=CR, non-target=PR, overall=CR */
+
+STUDY1 101 002 PD SD PD
+/* SD = Stable Disease (tumor neither grows nor shrinks) */
+
+;
+run;
+
+data rs;
+set resist;
+DOMAIN="RS";
+USUBJID= catx("-",STUDYID, SITEID, SUBJID);
+
+RSTESTCD="TRG";
+RSTEST="Target Response";
+RSORRES=TRGRESP;
+RSSTRESC=TRGRESP;
+output;
+
+RSTESTCD="NTRG";
+RSTEST="Non-Target Response";
+RSORRES=NTRGRESP;
+RSSTRESC=NTRGRESP;
+OUTPUT;
+
+RSTESTCD="OVR";
+RSTEST="OVERALL RESPONSE";
+RSORRES="OVRRESP";
+RSSTRESC=OVRRESP;
+OUTPUT;
+
+RUN;
+
+PROC SORT DATA=RS;
+BY USUBJID;
+RUN;
+
+DATA RS_FINAL;
+SET RS;
+BY USUBJID;
+IF FIRST.USUBJID THEN RSSEQ=1;
+ELSE RSSEQ + 1;
+RUN;
